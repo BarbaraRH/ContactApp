@@ -4,7 +4,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Contacts from "./views/Contacts.jsx";
 import AddContact from "./views/AddContact.jsx";
 
-export default class Layout extends Flux.View {
+import injectContext from "./store/appContext";
+
+export class Layout extends Flux.View {
 	render() {
 		return (
 			<div>
@@ -24,3 +26,5 @@ export default class Layout extends Flux.View {
 		);
 	}
 }
+
+export default injectContext(Layout);

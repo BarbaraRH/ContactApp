@@ -6,6 +6,8 @@ import ContactCard from "../components/ContactCard";
 import Modal from "../components/Modal";
 import avatar1 from "../../img/user_1.jpg";
 
+import { Context } from "../store/appContext";
+
 export default class Contacts extends Flux.View {
 	constructor() {
 		super();
@@ -24,10 +26,24 @@ export default class Contacts extends Flux.View {
 					</p>
 					<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 						<ul className="list-group pull-down" id="contact-list">
-							<ContactCard onDelete={() => this.setState({ showModal: true })} />
-							<ContactCard />
-							<ContactCard />
-							<ContactCard />
+							<Context.Consumer>
+								{({ store, actions }) => {
+									if ("contactNames" in store) {
+										return store.contactNames.map((item, index) => {
+											return (
+												<ContactCard
+													key={index}
+													onDelete={() => this.setState({ showModal: true })}
+													name={item.full_name}
+													adress={item.address}
+													phone={item.phone}
+													email={item.email}
+												/>
+											);
+										});
+									}
+								}}
+							</Context.Consumer>
 						</ul>
 					</div>
 				</div>
