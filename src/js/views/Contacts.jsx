@@ -35,7 +35,7 @@ export default class Contacts extends Flux.View {
 													key={index}
 													onDelete={() => this.setState({ showModal: true })}
 													name={item.full_name}
-													adress={item.address}
+													address={item.address}
 													phone={item.phone}
 													email={item.email}
 												/>

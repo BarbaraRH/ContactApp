@@ -15,6 +15,20 @@ const getState = ({ getStore, setStore }) => {
 			]
 		},
 		actions: {
+			addContact: event => {
+				event.preventDefault();
+				const store = getStore();
+				console.log(store);
+				store.contactNames.push({
+					full_name: event.target.name.value,
+					email: event.target.email.value,
+					agenda_slug: "downtown_vi",
+					address: event.target.address.value,
+					phone: event.target.phone.value
+				});
+				setStore({ contactNames: store.contactNames });
+				console.log(store);
+			},
 			showMore: (category, nextCategory) => {
 				const store = getStore();
 				fetch(store[nextCategory])
